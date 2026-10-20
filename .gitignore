@@ -15,8 +15,8 @@ frontend/dist/
 frontend/.env
 frontend/.env.local
 
-# Local data
-storage/
+# Local data (root only — do not ignore Java package .../staffing/storage/)
+/storage/
 pgdata/
 .appdeploy
 

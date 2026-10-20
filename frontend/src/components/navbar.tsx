@@ -156,7 +156,7 @@ function MenuDropdown({ links }: { links: NavLink[] }) {
           <DropdownMenuItem
             key={l.href}
             className="p-2 px-3 text-base focus:bg-transparent"
-            onSelect={(e) => (e.currentTarget as HTMLElement).querySelector('a')?.click()}
+            onSelect={(e: Event) => (e.currentTarget as HTMLElement).querySelector('a')?.click()}
           >
             <a href={l.href} tabIndex={-1} className="pointer-events-none flex items-center gap-2" {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
               {l.icon}

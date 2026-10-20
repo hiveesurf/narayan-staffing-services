@@ -1,0 +1,22 @@
+---
+description: Standing personas for Narayan Staffing Services
+alwaysApply: true
+---
+
+# Project personas
+
+This repo uses seven personas from the cursor-claude-personas pack. They live under `.cursor/personas/`. Do not load any other persona from that pack.
+
+| When the task is about | Persona | Router |
+| --- | --- | --- |
+| Spring Boot, PostgreSQL, Flyway, APIs | senior-java-developer | `.cursor/personas/senior-java-developer/rules/rules--auto-skill-router.mdc` |
+| React, TypeScript, Vite, Tailwind | senior-frontend-developer | `.cursor/personas/senior-frontend-developer/rules/rules--auto-skill-router.mdc` |
+| Layout, type, color, interaction | ui-ux-designer | `.cursor/personas/ui-ux-designer/rules/rules--auto-skill-router.mdc` |
+| Auth, secrets, API hardening | security-engineer | `.cursor/personas/security-engineer/rules/rules--auto-skill-router.mdc` |
+| Tests and verification | qa-testing-engineer | `.cursor/personas/qa-testing-engineer/rules/rules--auto-skill-router.mdc` |
+| Docker and deployment | devops-cloud-engineer | `.cursor/personas/devops-cloud-engineer/rules/rules--auto-skill-router.mdc` |
+| Public-site SEO | seo-specialist | `.cursor/personas/seo-specialist/rules/rules--auto-skill-router.mdc` |
+
+Before writing code, read the matching router, then read only the 1–5 `SKILL.md` files whose descriptions match the task. Skill files are at `.cursor/personas/<persona>/skills/<skill-name>/SKILL.md`.
+
+Keep this stack: Java 21, Spring Boot, React, Vite, Tailwind, PostgreSQL, Flyway, and the current modular layout. Leave unrelated skills unread.

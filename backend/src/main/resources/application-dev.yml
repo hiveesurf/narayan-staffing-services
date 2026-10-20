@@ -1,0 +1,25 @@
+# Development profile. Sample credentials below are development-only.
+# DEVELOPMENT ONLY. Do not use these accounts outside a local database.
+app:
+  bootstrap:
+    admin-email: ${APP_ADMIN_EMAIL:admin@narayanstaffingservices.com}
+    admin-password: ${APP_ADMIN_PASSWORD:Admin@12345}
+    admin-name: ${APP_ADMIN_NAME:Narayan Admin}
+    seed-sample-data: true
+    sample-users:
+      - email: hr@narayanstaffingservices.com
+        password: Hr@12345
+        name: HR Manager
+        role: HR_MANAGER
+      - email: payroll@narayanstaffingservices.com
+        password: Payroll@12345
+        name: Payroll Admin
+        role: PAYROLL_ADMIN
+      - email: content@narayanstaffingservices.com
+        password: Content@12345
+        name: Content Admin
+        role: CONTENT_ADMIN
+
+logging:
+  level:
+    com.narayan.staffing: INFO

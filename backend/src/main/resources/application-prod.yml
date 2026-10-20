@@ -1,0 +1,10 @@
+app:
+  bootstrap:
+    seed-sample-data: ${APP_SEED_SAMPLE_DATA:false}
+
+logging:
+  level:
+    root: INFO
+
+server:
+  port: ${PORT:8080}

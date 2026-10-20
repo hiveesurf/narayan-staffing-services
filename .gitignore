@@ -1,0 +1,24 @@
+.DS_Store
+.env
+*.log
+
+# Backend
+backend/target/
+backend/.idea/
+backend/*.iml
+backend/storage/
+backend/.env
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Local data
+storage/
+pgdata/
+.appdeploy
+
+frontend/.netlify/
+.netlify/

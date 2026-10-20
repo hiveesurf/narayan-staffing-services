@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: narayan_staffing
+      POSTGRES_USER: narayan
+      POSTGRES_PASSWORD: narayan
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U narayan -d narayan_staffing"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DATABASE_URL: jdbc:postgresql://postgres:5432/narayan_staffing
+      DATABASE_USERNAME: narayan
+      DATABASE_PASSWORD: narayan
+      JWT_SECRET: ${JWT_SECRET:-replace-this-production-secret-with-32-bytes-min}
+      JWT_ACCESS_EXPIRATION: 900000
+      JWT_REFRESH_EXPIRATION: 1209600000
+      FILE_STORAGE_PATH: /data/storage
+      SENSITIVE_DATA_KEY: ${SENSITIVE_DATA_KEY:-ZGV2LW9ubHktbmFyYXlhbi1zdGFmZmluZy1rZXk=}
+      MAIL_ENABLED: ${MAIL_ENABLED:-false}
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:-hr@narayanstaffingservices.com}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8088,http://localhost:5173}
+      APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-http://localhost:8088}
+      APP_ADMIN_EMAIL: ${APP_ADMIN_EMAIL:-}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD:-}
+      APP_ADMIN_NAME: ${APP_ADMIN_NAME:-Narayan Admin}
+    ports:
+      - "8080:8080"
+    volumes:
+      - uploads:/data/storage
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ""
+    depends_on:
+      - backend
+    ports:
+      - "8088:80"
+
+volumes:
+  pgdata:
+  uploads:
